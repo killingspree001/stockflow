@@ -37,7 +37,7 @@ export default function SalesChart({
             fontSize: 13,
           }}
         />
-        <Bar dataKey="revenue" fill="#059669" radius={[4, 4, 0, 0]} />
+        <Bar dataKey="revenue" fill="#6366f1" radius={[4, 4, 0, 0]} />
       </BarChart>
     </ResponsiveContainer>
   );

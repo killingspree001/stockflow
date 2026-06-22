@@ -104,7 +104,7 @@ export default function CheckoutClient() {
   if (loading) {
     return (
       <div className="flex h-64 items-center justify-center">
-        <div className="h-8 w-8 animate-spin rounded-full border-2 border-slate-200 border-t-emerald-600" />
+        <div className="h-8 w-8 animate-spin rounded-full border-2 border-slate-200 border-t-indigo-600" />
       </div>
     );
   }
@@ -126,7 +126,7 @@ export default function CheckoutClient() {
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Scan barcode or search…"
               autoFocus
-              className="w-full rounded-lg border border-slate-300 px-4 py-2.5 text-sm outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100"
+              className="w-full rounded-lg border border-slate-300 px-4 py-2.5 text-sm outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100"
             />
           </form>
 
@@ -140,13 +140,13 @@ export default function CheckoutClient() {
                 <button
                   key={product.id}
                   onClick={() => addToCart(product)}
-                  className="rounded-xl border border-slate-200 bg-white p-4 text-left shadow-sm transition hover:border-emerald-300 hover:shadow"
+                  className="rounded-xl border border-slate-200 bg-white p-4 text-left shadow-sm transition hover:border-indigo-300 hover:shadow"
                 >
                   <div className="font-medium text-slate-900">{product.name}</div>
                   <div className="mt-0.5 text-xs text-slate-400">
                     {product.sku ?? "No SKU"} · {product.quantity} in stock
                   </div>
-                  <div className="mt-2 font-semibold text-emerald-600">
+                  <div className="mt-2 font-semibold text-indigo-600">
                     {money(product.sell_price)}
                   </div>
                 </button>
@@ -224,7 +224,7 @@ export default function CheckoutClient() {
               <button
                 onClick={completeSale}
                 disabled={cart.length === 0 || busy}
-                className="w-full rounded-lg bg-emerald-600 py-2.5 text-sm font-semibold text-white transition hover:bg-emerald-700 disabled:opacity-50"
+                className="w-full rounded-lg bg-indigo-600 py-2.5 text-sm font-semibold text-white transition hover:bg-indigo-700 disabled:opacity-50"
               >
                 {busy ? "Processing…" : "Complete sale"}
               </button>
@@ -271,7 +271,7 @@ function ReceiptModal({
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/40 p-4">
       <div className="w-full max-w-sm rounded-2xl bg-white p-6 shadow-xl">
         <div className="mb-4 text-center">
-          <div className="mx-auto mb-2 flex h-10 w-10 items-center justify-center rounded-full bg-emerald-100 text-emerald-600">
+          <div className="mx-auto mb-2 flex h-10 w-10 items-center justify-center rounded-full bg-indigo-100 text-indigo-600">
             ✓
           </div>
           <h3 className="text-lg font-semibold text-slate-900">Sale complete</h3>
@@ -303,7 +303,7 @@ function ReceiptModal({
 
         <button
           onClick={onClose}
-          className="w-full rounded-lg bg-emerald-600 py-2.5 text-sm font-semibold text-white transition hover:bg-emerald-700"
+          className="w-full rounded-lg bg-indigo-600 py-2.5 text-sm font-semibold text-white transition hover:bg-indigo-700"
         >
           New sale
         </button>

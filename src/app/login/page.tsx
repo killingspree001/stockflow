@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import {
   createUserWithEmailAndPassword,
@@ -43,12 +44,15 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center px-4">
+    <div className="flex min-h-screen items-center justify-center bg-gradient-to-b from-slate-50 to-indigo-50 px-4">
       <div className="w-full max-w-sm">
         <div className="mb-8 text-center">
-          <div className="mx-auto mb-3 flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-600 text-lg font-bold text-white">
+          <Link
+            href="/"
+            className="mx-auto mb-3 flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-500 to-violet-500 text-lg font-bold text-white shadow-lg shadow-indigo-200"
+          >
             S
-          </div>
+          </Link>
           <h1 className="text-2xl font-semibold text-slate-900">StockFlow</h1>
           <p className="mt-1 text-sm text-slate-500">
             Inventory and point of sale for small shops.
@@ -123,7 +127,7 @@ export default function LoginPage() {
             <button
               type="submit"
               disabled={busy}
-              className="w-full rounded-lg bg-emerald-600 py-2.5 text-sm font-semibold text-white transition hover:bg-emerald-700 disabled:opacity-60"
+              className="w-full rounded-lg bg-indigo-600 py-2.5 text-sm font-semibold text-white transition hover:bg-indigo-700 disabled:opacity-60"
             >
               {busy ? "Please wait…" : signingUp ? "Create account" : "Sign in"}
             </button>
@@ -139,7 +143,7 @@ export default function LoginPage() {
 }
 
 const inputClass =
-  "w-full rounded-lg border border-slate-300 px-3 py-2 text-sm text-slate-900 outline-none transition focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100";
+  "w-full rounded-lg border border-slate-300 px-3 py-2 text-sm text-slate-900 outline-none transition focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100";
 
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (

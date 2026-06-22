@@ -122,7 +122,7 @@ export default function ProductsClient() {
   if (loading) {
     return (
       <div className="flex h-64 items-center justify-center">
-        <div className="h-8 w-8 animate-spin rounded-full border-2 border-slate-200 border-t-emerald-600" />
+        <div className="h-8 w-8 animate-spin rounded-full border-2 border-slate-200 border-t-indigo-600" />
       </div>
     );
   }
@@ -169,7 +169,7 @@ export default function ProductsClient() {
       {(message || error) && (
         <p
           className={`rounded-lg px-3 py-2 text-sm ${
-            error ? "bg-red-50 text-red-600" : "bg-emerald-50 text-emerald-700"
+            error ? "bg-red-50 text-red-600" : "bg-indigo-50 text-indigo-700"
           }`}
         >
           {error ?? message}
@@ -192,7 +192,7 @@ export default function ProductsClient() {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search by name, SKU, category…"
-            className="w-full max-w-xs rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100"
+            className="w-full max-w-xs rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100"
           />
         </div>
 
@@ -388,7 +388,7 @@ function Input({
         step={type === "number" ? "0.01" : undefined}
         min={type === "number" ? "0" : undefined}
         onChange={(e) => onChange(e.target.value)}
-        className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100"
+        className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100"
       />
     </label>
   );
@@ -468,6 +468,6 @@ function downloadSample() {
 }
 
 const primaryButton =
-  "rounded-lg bg-emerald-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-emerald-700 disabled:opacity-60";
+  "rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-indigo-700 disabled:opacity-60";
 const ghostButton =
   "rounded-lg border border-slate-300 px-4 py-2 text-sm font-medium text-slate-600 transition hover:bg-slate-50 disabled:opacity-60";

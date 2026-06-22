@@ -87,7 +87,7 @@ export default function DashboardPage() {
           {stats.topProducts.length === 0 ? (
             <p className="text-sm text-slate-400">
               No sales yet. Head to the{" "}
-              <Link href="/checkout" className="text-emerald-600 underline">
+              <Link href="/checkout" className="text-indigo-600 underline">
                 checkout
               </Link>{" "}
               to ring one up.
@@ -213,7 +213,7 @@ function StatCard({
       <p className="text-sm text-slate-500">{label}</p>
       <p
         className={`mt-2 text-2xl font-semibold ${
-          accent ? "text-emerald-600" : "text-slate-900"
+          accent ? "text-amber-500" : "text-slate-900"
         }`}
       >
         {value}
@@ -234,7 +234,7 @@ function Row({ term, value }: { term: string; value: string }) {
 function Loader() {
   return (
     <div className="flex h-64 items-center justify-center">
-      <div className="h-8 w-8 animate-spin rounded-full border-2 border-slate-200 border-t-emerald-600" />
+      <div className="h-8 w-8 animate-spin rounded-full border-2 border-slate-200 border-t-indigo-600" />
     </div>
   );
 }

@@ -45,7 +45,7 @@ export default function Sidebar({
   return (
     <aside className="flex w-60 shrink-0 flex-col border-r border-slate-200 bg-white">
       <div className="flex items-center gap-2 px-5 py-5">
-        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-600 text-sm font-bold text-white">
+        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-indigo-500 to-violet-500 text-sm font-bold text-white">
           S
         </div>
         <span className="text-lg font-semibold text-slate-900">StockFlow</span>
@@ -60,7 +60,7 @@ export default function Sidebar({
               href={item.href}
               className={`block rounded-lg px-3 py-2 text-sm font-medium transition ${
                 active
-                  ? "bg-emerald-50 text-emerald-700"
+                  ? "bg-indigo-50 text-indigo-700"
                   : "text-slate-600 hover:bg-slate-50 hover:text-slate-900"
               }`}
             >
