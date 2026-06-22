@@ -1,0 +1,53 @@
+rules_version = '2';
+
+// StockFlow security rules.
+// Paste these into the Firebase console: Firestore Database -> Rules -> Publish.
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function role() {
+      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role;
+    }
+
+    function isManager() {
+      return signedIn() && role() in ['owner', 'manager'];
+    }
+
+    // A profile per user. People can read and write their own, but they can't
+    // change their own role (that's done from the console).
+    match /users/{uid} {
+      allow read, create: if signedIn() && request.auth.uid == uid;
+      allow update: if signedIn() && request.auth.uid == uid
+                    && request.resource.data.role == resource.data.role;
+      allow delete: if false;
+    }
+
+    // Anyone signed in can read the catalogue. Only owners/managers can add,
+    // edit or remove products — except that a cashier completing a sale is
+    // allowed to lower the quantity (and only the quantity).
+    match /products/{id} {
+      allow read: if signedIn();
+      allow create, delete: if isManager();
+      allow update: if isManager() || (
+        signedIn() &&
+        request.resource.data.diff(resource.data).affectedKeys()
+          .hasOnly(['quantity', 'updatedAt']) &&
+        request.resource.data.quantity <= resource.data.quantity
+      );
+    }
+
+    // Sales are written once at checkout and never edited. The cashier id on
+    // the record has to match whoever is signed in.
+    match /sales/{id} {
+      allow read: if signedIn();
+      allow create: if signedIn()
+                    && request.resource.data.cashierId == request.auth.uid;
+      allow update, delete: if false;
+    }
+  }
+}
