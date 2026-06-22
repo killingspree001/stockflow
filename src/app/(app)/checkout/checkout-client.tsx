@@ -156,7 +156,7 @@ export default function CheckoutClient() {
         </div>
 
         <div className="lg:col-span-1">
-          <div className="sticky top-8 rounded-2xl border border-slate-200 bg-white shadow-sm">
+          <div className="rounded-2xl border border-slate-200 bg-white shadow-sm lg:sticky lg:top-8">
             <div className="border-b border-slate-100 px-5 py-4">
               <h2 className="text-sm font-semibold text-slate-900">Current sale</h2>
             </div>

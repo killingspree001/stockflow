@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/components/auth-provider";
-import Sidebar from "@/components/sidebar";
+import Sidebar, { MobileBottomNav, MobileTopBar } from "@/components/sidebar";
 
 export default function AppLayout({
   children,
@@ -29,11 +29,17 @@ export default function AppLayout({
   const email = profile.email ?? "";
 
   return (
-    <div className="flex min-h-screen">
+    <div className="flex min-h-screen flex-col md:flex-row">
       <Sidebar role={profile.role} name={name} email={email} />
+      <MobileTopBar role={profile.role} />
+
       <main className="flex-1 overflow-y-auto">
-        <div className="mx-auto max-w-6xl px-6 py-8">{children}</div>
+        <div className="mx-auto max-w-6xl px-4 py-6 pb-24 sm:px-6 sm:py-8 md:pb-8">
+          {children}
+        </div>
       </main>
+
+      <MobileBottomNav role={profile.role} />
     </div>
   );
 }

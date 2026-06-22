@@ -136,7 +136,7 @@ export default function ProductsClient() {
             {products.length} item{products.length === 1 ? "" : "s"} in stock.
           </p>
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2">
           <button onClick={downloadSample} className={ghostButton}>
             Sample CSV
           </button>

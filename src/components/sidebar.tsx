@@ -24,6 +24,24 @@ const roleLabel: Record<Role, string> = {
   cashier: "Cashier",
 };
 
+function itemsForRole(role: Role) {
+  return NAV.filter((item) => item.roles.includes(role));
+}
+
+async function doSignOut(router: ReturnType<typeof useRouter>) {
+  await signOut(getAuthClient());
+  router.replace("/login");
+}
+
+function Logo() {
+  return (
+    <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-indigo-500 to-violet-500 text-sm font-bold text-white">
+      S
+    </div>
+  );
+}
+
+// Desktop: persistent left rail.
 export default function Sidebar({
   role,
   name,
@@ -35,19 +53,12 @@ export default function Sidebar({
 }) {
   const pathname = usePathname();
   const router = useRouter();
-  const items = NAV.filter((item) => item.roles.includes(role));
-
-  async function handleSignOut() {
-    await signOut(getAuthClient());
-    router.replace("/login");
-  }
+  const items = itemsForRole(role);
 
   return (
-    <aside className="flex w-60 shrink-0 flex-col border-r border-slate-200 bg-white">
+    <aside className="hidden w-60 shrink-0 flex-col border-r border-slate-200 bg-white md:flex">
       <div className="flex items-center gap-2 px-5 py-5">
-        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-indigo-500 to-violet-500 text-sm font-bold text-white">
-          S
-        </div>
+        <Logo />
         <span className="text-lg font-semibold text-slate-900">StockFlow</span>
       </div>
 
@@ -79,12 +90,65 @@ export default function Sidebar({
           </span>
         </div>
         <button
-          onClick={handleSignOut}
+          onClick={() => doSignOut(router)}
           className="w-full rounded-lg border border-slate-200 py-2 text-sm font-medium text-slate-600 transition hover:bg-slate-50 hover:text-slate-900"
         >
           Sign out
         </button>
       </div>
     </aside>
+  );
+}
+
+// Mobile: a slim header at the top with the brand and a sign-out control.
+export function MobileTopBar({ role }: { role: Role }) {
+  const router = useRouter();
+
+  return (
+    <header className="sticky top-0 z-30 flex items-center justify-between border-b border-slate-200 bg-white/90 px-4 py-3 backdrop-blur md:hidden">
+      <div className="flex items-center gap-2">
+        <Logo />
+        <span className="font-semibold text-slate-900">StockFlow</span>
+        <span className="rounded-full bg-slate-100 px-2 py-0.5 text-xs font-medium text-slate-600">
+          {roleLabel[role]}
+        </span>
+      </div>
+      <button
+        onClick={() => doSignOut(router)}
+        className="text-sm font-medium text-slate-500 hover:text-slate-900"
+      >
+        Sign out
+      </button>
+    </header>
+  );
+}
+
+// Mobile: thumb-friendly bottom tab bar.
+export function MobileBottomNav({ role }: { role: Role }) {
+  const pathname = usePathname();
+  const items = itemsForRole(role);
+
+  return (
+    <nav className="fixed inset-x-0 bottom-0 z-30 flex border-t border-slate-200 bg-white/95 backdrop-blur md:hidden">
+      {items.map((item) => {
+        const active = pathname === item.href;
+        return (
+          <Link
+            key={item.href}
+            href={item.href}
+            className={`flex flex-1 flex-col items-center gap-1 py-2.5 text-xs font-medium transition ${
+              active ? "text-indigo-600" : "text-slate-500"
+            }`}
+          >
+            <span
+              className={`h-1 w-6 rounded-full transition ${
+                active ? "bg-indigo-600" : "bg-transparent"
+              }`}
+            />
+            {item.label}
+          </Link>
+        );
+      })}
+    </nav>
   );
 }
