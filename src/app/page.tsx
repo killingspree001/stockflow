@@ -40,7 +40,7 @@ function Nav() {
         </Link>
         <Link
           href="/login"
-          className="rounded-lg bg-gradient-to-r from-indigo-500 to-violet-500 px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-indigo-900/40 transition hover:opacity-90"
+          className="rounded-lg bg-gradient-to-r from-indigo-500 to-violet-500 px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-indigo-900/40 transition hover:-translate-y-0.5 hover:opacity-90"
         >
           Get started
         </Link>
@@ -51,9 +51,12 @@ function Nav() {
 
 function Hero() {
   return (
-    <section className="mx-auto max-w-6xl px-6 pb-12 pt-16 text-center sm:pt-24">
+    <section className="mx-auto max-w-6xl px-6 pb-12 pt-16 text-center animate-in sm:pt-24">
       <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-slate-300">
-        <span className="h-1.5 w-1.5 rounded-full bg-indigo-400" />
+        <span className="relative flex h-2 w-2">
+          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-indigo-400 opacity-75" />
+          <span className="relative inline-flex h-2 w-2 rounded-full bg-indigo-400" />
+        </span>
         Built for independent shops
       </span>
 
@@ -72,7 +75,7 @@ function Hero() {
       <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
         <Link
           href="/login"
-          className="w-full rounded-lg bg-gradient-to-r from-indigo-500 to-violet-500 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-indigo-900/40 transition hover:opacity-90 sm:w-auto"
+          className="w-full rounded-lg bg-gradient-to-r from-indigo-500 to-violet-500 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-indigo-900/40 transition hover:-translate-y-0.5 hover:opacity-90 sm:w-auto"
         >
           Start free
         </Link>
@@ -91,7 +94,7 @@ function Hero() {
 
 function HeroPreview() {
   return (
-    <div className="mx-auto mt-16 max-w-4xl">
+    <div className="float mx-auto mt-16 max-w-4xl">
       <div className="rounded-2xl border border-white/10 bg-white/5 p-2 shadow-2xl backdrop-blur">
         <div className="rounded-xl bg-slate-900/80 p-5">
           <div className="mb-4 flex gap-1.5">
@@ -109,8 +112,8 @@ function HeroPreview() {
             {[40, 65, 50, 80, 55, 95, 70].map((h, i) => (
               <div
                 key={i}
-                style={{ height: `${h}%` }}
-                className="flex-1 rounded-t bg-gradient-to-t from-indigo-500 to-violet-400"
+                style={{ height: `${h}%`, animationDelay: `${i * 140}ms` }}
+                className="bar-rise flex-1 rounded-t bg-gradient-to-t from-indigo-500 to-violet-400"
               />
             ))}
           </div>
@@ -184,11 +187,11 @@ function Features() {
         </p>
       </div>
 
-      <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="stagger mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
         {items.map((item) => (
           <div
             key={item.title}
-            className="rounded-2xl border border-white/10 bg-white/5 p-6 transition hover:border-indigo-400/40 hover:bg-white/[0.07]"
+            className="rounded-2xl border border-white/10 bg-white/5 p-6 transition hover:-translate-y-1 hover:border-indigo-400/40 hover:bg-white/[0.07]"
           >
             <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-indigo-500 to-violet-500 text-white">
               ◆
@@ -218,7 +221,7 @@ function Workflow() {
         <p className="mt-3 text-slate-400">Three steps from sign-up to your first sale.</p>
       </div>
 
-      <div className="mt-12 grid gap-5 md:grid-cols-3">
+      <div className="stagger mt-12 grid gap-5 md:grid-cols-3">
         {steps.map((step) => (
           <div key={step.n} className="rounded-2xl border border-white/10 bg-white/5 p-6">
             <div className="mb-4 flex h-9 w-9 items-center justify-center rounded-full border border-indigo-400/40 text-sm font-semibold text-indigo-300">

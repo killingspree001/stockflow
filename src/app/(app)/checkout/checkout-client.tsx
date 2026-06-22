@@ -135,7 +135,7 @@ export default function CheckoutClient() {
               No products in stock match that search.
             </p>
           ) : (
-            <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+            <div className="stagger grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
               {filtered.map((product) => (
                 <button
                   key={product.id}

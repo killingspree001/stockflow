@@ -41,7 +41,7 @@ export default function DashboardPage() {
         <p className="text-sm text-slate-500">An overview of sales and stock.</p>
       </header>
 
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="stagger grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <StatCard label="Revenue today" value={money(stats.revenueToday)} />
         <StatCard label="Profit today" value={money(stats.profitToday)} accent />
         <StatCard label="Revenue this week" value={money(stats.revenueWeek)} />
